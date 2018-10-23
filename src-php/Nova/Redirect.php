@@ -33,7 +33,7 @@ class Redirect extends Resource
 
     public function title()
     {
-        // return sprintf('%s > %s', $this->from, $this->to);
+        return sprintf('%s > %s', $this->from, $this->to);
     }
 
     public static function label()
