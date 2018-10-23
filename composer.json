@@ -1,0 +1,35 @@
+{
+    "name": "dewsign/nova-tool-redirects",
+    "description": "Boilerplate repository for creating new Laravel or Javascript/Vue NPM packages",
+    "type": "boilerplate",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marco Mark",
+            "email": "m2de@outlook.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": ">=5.0.0",
+        "laravel/nova": "^1.1",
+        "spatie/laravel-missing-page-redirector": "^2.3",
+        "maatwebsite/excel": "^3.1"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": ">=3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dewsign\\NovaToolRedirects\\": "src-php/"
+        }
+    },
+    "extra":{
+        "laravel": {
+            "providers": [
+                "Dewsign\\NovaToolRedirects\\Providers\\PackageServiceProvider",
+                "Dewsign\\NovaToolRedirects\\Providers\\EventServiceProvider"
+            ]
+        }
+    }
+}
