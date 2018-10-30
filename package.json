@@ -1,6 +1,6 @@
 {
     "name": "@dewsign/nova-tool-redirects",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "301 Redirects managed through Laravel Nova",
     "main": "dist-js/index.js",
     "scripts": {
