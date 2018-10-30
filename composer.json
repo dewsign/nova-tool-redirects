@@ -1,7 +1,7 @@
 {
     "name": "dewsign/nova-tool-redirects",
-    "description": "Boilerplate repository for creating new Laravel or Javascript/Vue NPM packages",
-    "type": "boilerplate",
+    "description": "301 Redirects managed through Laravel Nova",
+    "type": "package",
     "license": "MIT",
     "authors": [
         {
