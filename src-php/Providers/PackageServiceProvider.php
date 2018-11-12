@@ -7,6 +7,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Dewsign\NovaToolRedirects\Nova\Redirect;
 use Spatie\MissingPageRedirector\RedirectsMissingPages;
+use Dewsign\NovaToolRedirects\Http\Middleware\ForceDomain;
 
 class PackageServiceProvider extends ServiceProvider
 {
@@ -40,6 +41,7 @@ class PackageServiceProvider extends ServiceProvider
         collect(config('nova-tool-redirects.middlewareGroups', []))->each(function ($group) {
             $router = $this->app['router'];
             $router->pushMiddlewareToGroup($group, RedirectsMissingPages::class);
+            $router->pushMiddlewareToGroup($group, ForceDomain::class);
         });
     }
 
