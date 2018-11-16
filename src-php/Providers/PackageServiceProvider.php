@@ -22,6 +22,7 @@ class PackageServiceProvider extends ServiceProvider
         $this->bootCommands();
         $this->publishDatabaseFiles();
         $this->publishConfig();
+        $this->loadTranslations();
 
         Nova::resources([
             Redirect::class,
@@ -114,5 +115,10 @@ class PackageServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../Config/missing-page-redirector.php', 'missing-page-redirector');
         $this->mergeConfigFrom(__DIR__.'/../Config/nova-tool-redirects.php', 'nova-tool-redirects');
+    }
+
+    private function loadTranslations()
+    {
+        $this->loadJSONTranslationsFrom(__DIR__.'/../Resources/lang', 'novatoolredirects');
     }
 }
