@@ -12,8 +12,14 @@ trait CanBeRedirected
      */
     public function resolveRouteBinding($value)
     {
-        $redirectResponse = app(\Spatie\MissingPageRedirector\MissingPageRouter::class)->getRedirectFor(request());
+        if ($resolved = $this->where($this->getRouteKeyName(), $value)->first()) {
+            return $resolved;
+        }
 
-        return $this->where($this->getRouteKeyName(), $value)->first() ?? abort($redirectResponse) ?? abort(404);
+        if ($redirectResponse = app(\Spatie\MissingPageRedirector\MissingPageRouter::class)->getRedirectFor(request())) {
+            abort($redirectResponse);
+        }
+
+        return abort(404);
     }
 }
