@@ -10,4 +10,6 @@ For Excel downloads to work you need to have your storage linked.
 
 ## Usage
 
+If you are using Dependency Injection to inject your models into controller methods, for example, you will need to apply the `ShouldRedirectMissingPages` trait to the model.  This trait overrides the `resolveRouteBinding()` method and checks for a redirect in the Spatie `MissingPageRedirector` package if the model is not found, before returning a 404.
+
 Enjoy!
