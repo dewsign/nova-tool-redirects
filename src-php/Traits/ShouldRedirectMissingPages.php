@@ -2,7 +2,7 @@
 
 namespace Dewsign\NovaToolRedirects\Traits;
 
-trait CanBeRedirected
+trait ShouldRedirectMissingPages
 {
     /**
      * Retrieve the model for a bound value.
