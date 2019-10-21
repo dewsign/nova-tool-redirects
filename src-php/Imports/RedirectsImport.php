@@ -2,6 +2,7 @@
 
 namespace Dewsign\NovaToolRedirects\Imports;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -18,8 +19,8 @@ class RedirectsImport implements ToCollection, WithHeadingRow
     public function collection(Collection $rows)
     {
         $rows->each(function ($row) {
-            $from = array_get($row, 'from');
-            $to = array_get($row, 'to');
+            $from = Arr::get($row, 'from');
+            $to = Arr::get($row, 'to');
 
             if (!$redirect = Redirect::whereFrom($from)->first()) {
                 return Redirect::create([
