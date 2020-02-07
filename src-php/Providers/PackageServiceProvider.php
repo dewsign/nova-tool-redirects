@@ -4,6 +4,7 @@ namespace Dewsign\NovaToolRedirects\Providers;
 
 use Laravel\Nova\Nova;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Dewsign\NovaToolRedirects\Nova\Redirect;
 use Spatie\MissingPageRedirector\RedirectsMissingPages;
@@ -87,9 +88,7 @@ class PackageServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
 
-        $this->app->make('Illuminate\Database\Eloquent\Factory')->load(
-            __DIR__ . '/../Database/factories'
-        );
+        $this->loadFactories();
 
         $this->publishes([
             __DIR__ . '/../Database/factories' => base_path('database/factories')
@@ -102,6 +101,22 @@ class PackageServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Database/seeds' => base_path('database/seeds')
         ], 'seeds');
+    }
+
+    /**
+     * Only load the factories in non-production ready environments
+     *
+     * @return void
+     */
+    public function loadFactories()
+    {
+        if (App::environment(['production', 'staging'])) {
+            return;
+        }
+
+        $this->app->make('Illuminate\Database\Eloquent\Factory')->load(
+            __DIR__ . '/../Database/factories'
+        );
     }
 
     public function publishConfig()
